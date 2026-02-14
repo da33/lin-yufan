@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>林祐凡 | 時尚表演藝術</title>
+  <meta name="description" content="萬能科技大學 時尚造型設計暨表演藝術系 專任教師 - 影音設計、行銷專業、舞蹈設計編排">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --bg-secondary: #161616;
+      --primary: #c9a962;
+      --primary-light: #e4c98a;
+      --text: #f5f5f5;
+      --text-muted: #888;
+      --accent: #8b7355;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    
+    /* 裝飾背景 */
+    .bg-decoration {
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse at 20% 20%, rgba(201, 169, 98, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(139, 115, 85, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    /* 導航 */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: linear-gradient(to bottom, rgba(13,13,13,0.95), transparent);
+    }
+    
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-content {
+      max-width: 700px;
+    }
+    
+    .hero-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+    
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    
+    .hero h1 span {
+      color: var(--primary);
+    }
+    
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+    
+    .hero-description {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+    
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .tag {
+      padding: 0.5rem 1rem;
+      background: rgba(201, 169, 98, 0.1);
+      border: 1px solid rgba(201, 169, 98, 0.3);
+      font-size: 0.75rem;
+      color: var(--primary-light);
+      letter-spacing: 0.05em;
+    }
+    
+    .hero-links {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: var(--bg);
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-light);
+    }
+    
+    .btn-outline {
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: rgba(201, 169, 98, 0.1);
+    }
+    
+    /* 大頭照 */
+    .profile-image {
+      position: absolute;
+      right: 10%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 350px;
+      height: 450px;
+      background: linear-gradient(135deg, var(--bg-secondary), var(--bg));
+      border: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .profile-image::before {
+      content: '👨‍🏫';
+      font-size: 8rem;
+      opacity: 0.3;
+    }
+    
+    /* 經歷 */
+    .experience {
+      padding: 6rem 4rem;
+      background: var(--bg-secondary);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+    
+    .timeline {
+      max-width: 600px;
+    }
+    
+    .timeline-item {
+      padding-left: 2rem;
+      border-left: 1px solid var(--accent);
+      padding-bottom: 2.5rem;
+      position: relative;
+    }
+    
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 0;
+      width: 7px;
+      height: 7px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+    
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+    
+    .timeline-year {
+      font-size: 0.8rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.1em;
+    }
+    
+    .timeline-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+    
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    
+    /* 專長 */
+    .expertise {
+      padding: 6rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 900px;
+    }
+    
+    .expertise-item {
+      padding: 2rem;
+      background: var(--bg-secondary);
+      border: 1px solid transparent;
+      transition: all 0.3s;
+    }
+    
+    .expertise-item:hover {
+      border-color: var(--accent);
+    }
+    
+    .expertise-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .expertise-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    
+    .expertise-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    /* 著作/演出 */
+    .works {
+      padding: 6rem 4rem;
+      background: var(--bg-secondary);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 800px;
+    }
+    
+    .work-item {
+      padding: 1.5rem;
+      background: var(--bg);
+      border-left: 2px solid var(--primary);
+    }
+    
+    .work-item h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+    
+    .work-item p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    /* 聯繫 */
+    .contact {
+      padding: 6rem 4rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+    
+    .contact p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    
+    .contact-email {
+      font-size: 1.2rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .contact-email:hover {
+      text-decoration: underline;
+    }
+    
+    /* 底部 */
+    footer {
+      padding: 2rem 4rem;
+      text-align: center;
+      border-top: 1px solid #1a1a1a;
+      position: relative;
+      z-index: 1;
+    }
+    
+    footer p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    /* 響應式 */
+    @media (max-width: 1024px) {
+      .profile-image {
+        display: none;
+      }
+      
+      .expertise-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 2rem;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .hero, .experience, .expertise, .works, .contact, footer {
+        padding: 0 2rem;
+      }
+      
+      .works-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-decoration"></div>
+  
+  <!-- 導航 -->
+  <nav>
+    <div class="logo">林祐凡</div>
+    <ul class="nav-links">
+      <li><a href="#experience">經歷</a></li>
+      <li><a href="#expertise">專長</a></li>
+      <li><a href="#works">作品</a></li>
+      <li><a href="#contact">聯繫</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-label">萬能科技大學 · 時尚造型設計暨表演藝術系</span>
+      <h1>林<span>祐凡</span></h1>
+      <p class="hero-subtitle">專任教師</p>
+      <p class="hero-description">
+        帶領學生探索創意的邊界，從課堂到國際舞台，
+        用舞蹈與影音訴說故事，用熱情點亮每一次演出。
+      </p>
+      
+      <div class="hero-tags">
+        <span class="tag">影音設計</span>
+        <span class="tag">行銷專業</span>
+        <span class="tag">舞蹈編排</span>
+        <span class="tag">國際研習</span>
+      </div>
+      
+      <div class="hero-links">
+        <a href="#contact" class="btn btn-primary">聯繫資訊</a>
+        <a href="#works" class="btn btn-outline">查看作品</a>
+      </div>
+    </div>
+    
+    <div class="profile-image"></div>
+  </section>
+  
+  <!-- 經歷 -->
+  <section class="experience" id="experience">
+    <h2 class="section-title">經歷</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <span class="timeline-year">現在</span>
+        <h3 class="timeline-title">萬能科技大學 時尚造型設計暨表演藝術系</h3>
+        <p class="timeline-desc">專任教師</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2024-2025</span>
+        <h3 class="timeline-title">帶領學生赴韓國研習</h3>
+        <p class="timeline-desc">深化跨文化實作力，打造國際表演人才</p>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">競賽指導</span>
+        <h3 class="timeline-title">指導學生参加各項舞蹈比賽</h3>
+        <p class="timeline-desc">College High 街舞比賽全國亞軍等多項榮譽</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 專長 -->
+  <section class="expertise" id="expertise">
+    <h2 class="section-title">專長</h2>
+    <div class="expertise-grid">
+      <div class="expertise-item">
+        <div class="expertise-icon">🎬</div>
+        <h3 class="expertise-title">影音設計</h3>
+        <p class="expertise-desc">從拍攝到後製，創造視覺與聽覺的完美結合</p>
+      </div>
+      <div class="expertise-item">
+        <div class="expertise-icon">📢</div>
+        <h3 class="expertise-title">行銷專業</h3>
+        <p class="expertise-desc">品牌策略與推廣，讓藝術被看見</p>
+      </div>
+      <div class="expertise-item">
+        <div class="expertise-icon">💃</div>
+        <h3 class="expertise-title">舞蹈編排</h3>
+        <p class="expertise-desc">融合創意與技術，打造震撼人心的演出</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 作品/成就 -->
+  <section class="works" id="works">
+    <h2 class="section-title">重要作品與成就</h2>
+    <div class="works-grid">
+      <div class="work-item">
+        <h3>🎓 萬能科大校歌比賽冠軍</h3>
+        <p>2025 · 指導老師</p>
+      </div>
+      <div class="work-item">
+        <h3>🏆 College High 街舞比賽全國亞軍</h3>
+        <p>2024 · 指導老師</p>
+      </div>
+      <div class="work-item">
+        <h3>🌏 韓國國際研習</h3>
+        <p>帶領30名學生赴韓文化交流</p>
+      </div>
+      <div class="work-item">
+        <h3>🎭 期末評比與製作</h3>
+        <p>每年指導學生大型演出</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 聯繫 -->
+  <section class="contact" id="contact">
+    <h2>與我聯繫</h2>
+    <p>歡迎洽談合作、演講或藝術相關事務</p>
+    <a href="mailto:rinolin1133@gmail.com" class="contact-email">rinolin1133@gmail.com</a>
+  </section>
+  
+  <!-- 底部 -->
+  <footer>
+    <p>© 2026 林祐凡 · 萬能科技大學 時尚造型設計暨表演藝術系</p>
+  </footer>
+  
+  <script>
+    // 平滑滾動
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
