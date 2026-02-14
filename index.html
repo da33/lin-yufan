@@ -3,22 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>林祐凡 | 萬能科大 時尚表演藝術</title>
-  <meta name="description" content="萬能科技大學 時尚造型設計暨表演藝術系 專任教師 - 影音設計、行銷專業、舞蹈設計編排">
+  <title>林祐凡 | 時尚表演藝術</title>
+  <meta name="description" content="萬能科技大學 時尚造型設計暨表演藝術系 專任教師">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #080808;
-      --bg-warm: #0f0c0a;
-      --gold: #c9a962;
-      --gold-light: #e4c98a;
-      --gold-dark: #8b7355;
-      --cream: #f5f0e8;
-      --text: #f5f0e8;
-      --text-muted: #a09a90;
+      --bg: #050508;
+      --bg-secondary: #0a0a0f;
+      --primary: #00f0ff;
+      --secondary: #ff00aa;
+      --tertiary: #7b2dff;
+      --text: #e0e0e0;
+      --text-dim: #666;
+      --grid: rgba(0, 240, 255, 0.03);
     }
     
     * {
@@ -35,41 +34,29 @@
       font-family: 'Noto Sans TC', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.8;
+      line-height: 1.6;
       overflow-x: hidden;
     }
     
     /* 背景 */
-    .bg {
+    .bg-grid {
       position: fixed;
       inset: 0;
+      background-image: 
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
       z-index: 0;
     }
     
-    .bg::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse at 30% 20%, rgba(201, 169, 98, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 70% 80%, rgba(139, 115, 85, 0.06) 0%, transparent 50%);
-    }
-    
-    .bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a962' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-    
-    /* 顆粒效果 */
-    .grain {
+    .scanlines {
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      opacity: 0.03;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.1) 2px, rgba(0, 0, 0, 0.1) 4px);
       pointer-events: none;
-      z-index: 1;
+      z-index: 1000;
+      opacity: 0.3;
     }
     
     /* 導航 */
@@ -78,506 +65,371 @@
       top: 0;
       left: 0;
       right: 0;
-      padding: 2rem 6rem;
+      padding: 1.5rem 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      mix-blend-mode: difference;
+      background: linear-gradient(to bottom, rgba(5,5,8,0.9), transparent);
     }
     
     .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      color: var(--gold);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      text-shadow: 0 0 20px var(--primary);
+    }
+    
+    .logo span {
+      color: var(--secondary);
+      text-shadow: 0 0 20px var(--secondary);
     }
     
     .nav-links {
       display: flex;
-      gap: 4rem;
+      gap: 3rem;
       list-style: none;
     }
     
     .nav-links a {
-      color: var(--text);
+      color: var(--text-dim);
       text-decoration: none;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      position: relative;
-      transition: color 0.3s;
-    }
-    
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--gold);
-      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.3s;
     }
     
     .nav-links a:hover {
-      color: var(--gold);
+      color: var(--primary);
+      text-shadow: 0 0 10px var(--primary);
     }
     
-    .nav-links a:hover::after {
-      width: 100%;
+    .nav-links a::before, .nav-links a::after {
+      content: '';
+      opacity: 0;
+      transition: opacity 0.3s;
     }
+    
+    .nav-links a::before { content: '['; margin-right: 5px; }
+    .nav-links a::after { content: ']'; margin-left: 5px; }
+    
+    .nav-links a:hover::before, .nav-links a:hover::after { opacity: 1; }
     
     /* Hero */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 0 6rem;
+      padding: 0 4rem;
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
     
     .hero-content {
-      max-width: 55%;
+      max-width: 800px;
     }
     
-    .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.8rem;
+    .hero-tag {
+      font-family: 'Orbitron', sans-serif;
       font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease 0.2s forwards;
-    }
-    
-    .hero-label::before {
-      content: '';
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
+      letter-spacing: 0.4em;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--primary);
+      background: rgba(0, 240, 255, 0.05);
     }
     
     .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.5rem, 8vw, 6rem);
-      font-weight: 400;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 900;
       line-height: 1.1;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease 0.4s forwards;
+      margin-bottom: 1rem;
     }
     
-    .hero h1 span {
+    .hero h1 .line {
       display: block;
-      color: var(--gold);
+      overflow: hidden;
     }
     
-    .hero-subtitle {
-      font-size: 1.3rem;
-      font-weight: 300;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
+    .hero h1 .text {
+      display: inline-block;
+      animation: slideUp 0.8s ease forwards;
       opacity: 0;
-      animation: fadeInUp 1s ease 0.6s forwards;
+      transform: translateY(100%);
     }
     
-    .hero-description {
+    .hero h1 .line:nth-child(1) .text { animation-delay: 0.1s; }
+    .hero h1 .line:nth-child(2) .text { animation-delay: 0.2s; }
+    .hero h1 .line:nth-child(3) .text { animation-delay: 0.3s; }
+    
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .hero h1 .highlight {
+      color: var(--secondary);
+      text-shadow: 0 0 30px var(--secondary);
+    }
+    
+    .hero p {
       font-size: 1rem;
-      color: var(--text-muted);
-      max-width: 450px;
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease 0.8s forwards;
+      color: var(--text-dim);
+      max-width: 500px;
+      margin-bottom: 2rem;
     }
     
-    .hero-credentials {
-      display: flex;
-      gap: 3rem;
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease 1s forwards;
-    }
-    
-    .credential {
-      text-align: left;
-    }
-    
-    .credential-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      font-weight: 500;
-      color: var(--gold);
-      line-height: 1;
-    }
-    
-    .credential-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-top: 0.3rem;
-    }
-    
-    .hero-buttons {
+    .hero-btns {
       display: flex;
       gap: 1.5rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease 1.2s forwards;
     }
     
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.8rem;
-      padding: 1rem 2.2rem;
-      font-size: 0.8rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
       letter-spacing: 0.15em;
-      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border: none;
+      cursor: pointer;
       text-decoration: none;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.3s;
     }
     
     .btn-primary {
-      background: var(--gold);
+      background: var(--primary);
       color: var(--bg);
+      font-weight: 700;
     }
     
     .btn-primary:hover {
-      background: var(--gold-light);
+      box-shadow: 0 0 30px var(--primary);
       transform: translateY(-2px);
     }
     
     .btn-outline {
-      border: 1px solid var(--gold-dark);
-      color: var(--gold);
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
     }
     
     .btn-outline:hover {
-      background: rgba(201, 169, 98, 0.1);
-      border-color: var(--gold);
+      background: rgba(0, 240, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
     }
     
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    /* 大頭照區 */
-    .hero-visual {
+    /* 裝飾 */
+    .hero-decoration {
       position: absolute;
       right: 10%;
       top: 50%;
       transform: translateY(-50%);
-      width: 380px;
-      height: 480px;
-      z-index: 2;
+      width: 300px;
+      height: 300px;
     }
     
-    .photo-frame {
-      width: 100%;
-      height: 100%;
-      position: relative;
-    }
-    
-    .photo-frame::before {
-      content: '';
+    .circle {
       position: absolute;
-      inset: 0;
-      border: 1px solid var(--gold-dark);
-      transform: translate(15px, 15px);
-    }
-    
-    .photo-inner {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, var(--bg-warm), var(--bg));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .photo-inner::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: 
-        linear-gradient(to bottom, transparent 60%, var(--bg)),
-        linear-gradient(to right, transparent 70%, var(--bg));
-    }
-    
-    .photo-emoji {
-      font-size: 10rem;
-      opacity: 0.15;
-    }
-    
-    .photo-accent {
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      border: 1px solid var(--gold);
+      border: 1px solid var(--primary);
+      border-radius: 50%;
       opacity: 0.3;
+      animation: pulse 4s ease-in-out infinite;
     }
     
-    .photo-accent:nth-child(1) {
-      top: -20px;
-      right: -20px;
+    .circle:nth-child(1) { width: 100%; height: 100%; top: 0; left: 0; }
+    .circle:nth-child(2) { width: 70%; height: 70%; top: 15%; left: 15%; animation-delay: 0.5s; }
+    .circle:nth-child(3) { width: 40%; height: 40%; top: 30%; left: 30%; animation-delay: 1s; }
+    
+    .circle::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      width: 10px;
+      height: 10px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--primary);
     }
     
-    .photo-accent:nth-child(2) {
-      bottom: -30px;
-      left: -30px;
-      width: 100px;
-      height: 100px;
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.05); opacity: 0.5; }
     }
     
-    /* 榮譽區 */
-    .honors {
-      padding: 8rem 6rem;
-      background: var(--bg-warm);
-      position: relative;
-      z-index: 2;
+    /* 統計 */
+    .stats {
+      display: flex;
+      gap: 4rem;
+      margin-top: 3rem;
     }
     
-    .honors-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 4rem;
-    }
-    
-    .honor-card {
-      padding: 2.5rem;
-      background: var(--bg);
-      border: 1px solid rgba(201, 169, 98, 0.1);
-      transition: all 0.4s;
-    }
-    
-    .honor-card:hover {
-      border-color: var(--gold-dark);
-      transform: translateY(-5px);
-    }
-    
-    .honor-icon {
+    .stat-num {
+      font-family: 'Orbitron', sans-serif;
       font-size: 2rem;
-      margin-bottom: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
     }
     
-    .honor-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-    
-    .honor-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
     }
     
     /* 專長 */
     .expertise {
-      padding: 8rem 6rem;
+      padding: 8rem 4rem;
+      background: var(--bg-secondary);
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
     
     .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
       margin-bottom: 4rem;
     }
     
-    .section-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      color: var(--gold);
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.4em;
+      color: var(--text-dim);
       text-transform: uppercase;
-      margin-bottom: 0.8rem;
     }
     
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
+    .section-title span {
+      display: block;
       font-size: 2.5rem;
-      font-weight: 400;
+      color: var(--text);
+      letter-spacing: 0.1em;
+      margin-top: 0.5rem;
     }
     
     .expertise-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      gap: 1.5rem;
     }
     
-    .expertise-card {
-      padding: 3rem 2rem;
-      background: linear-gradient(180deg, rgba(201, 169, 98, 0.03), transparent);
-      border: 1px solid transparent;
-      transition: all 0.4s;
-      position: relative;
-      overflow: hidden;
+    .expertise-item {
+      padding: 2rem;
+      border: 1px solid #1a1a1f;
+      background: rgba(0, 0, 0, 0.3);
+      transition: all 0.3s;
     }
     
-    .expertise-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transition: transform 0.4s;
-    }
-    
-    .expertise-card:hover {
-      border-color: var(--gold-dark);
-    }
-    
-    .expertise-card:hover::before {
-      transform: scaleX(1);
+    .expertise-item:hover {
+      border-color: var(--tertiary);
+      box-shadow: 0 0 20px rgba(123, 45, 255, 0.2);
     }
     
     .expertise-icon {
       font-size: 2.5rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
     
-    .expertise-title {
-      font-size: 1.2rem;
+    .expertise-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
       font-weight: 500;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.5rem;
     }
     
     .expertise-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
+      font-size: 0.85rem;
+      color: var(--text-dim);
     }
     
     /* 經歷 */
     .journey {
-      padding: 8rem 6rem;
-      background: var(--bg-warm);
+      padding: 8rem 4rem;
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
     
-    .journey-timeline {
-      max-width: 700px;
-      margin-left: 3rem;
-      border-left: 1px solid var(--gold-dark);
-      padding-left: 3rem;
+    .journey-list {
+      max-width: 600px;
     }
     
     .journey-item {
-      position: relative;
-      padding-bottom: 3rem;
-    }
-    
-    .journey-item:last-child {
-      padding-bottom: 0;
-    }
-    
-    .journey-item::before {
-      content: '';
-      position: absolute;
-      left: -3.4rem;
-      top: 0.3rem;
-      width: 8px;
-      height: 8px;
-      background: var(--gold);
-      border-radius: 50%;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid #1a1a1f;
     }
     
     .journey-year {
+      font-family: 'Orbitron', sans-serif;
       font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      color: var(--gold);
+      color: var(--secondary);
       margin-bottom: 0.5rem;
     }
     
     .journey-title {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 500;
       margin-bottom: 0.3rem;
     }
     
     .journey-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
+      font-size: 0.85rem;
+      color: var(--text-dim);
     }
     
     /* 聯繫 */
     .contact {
-      padding: 10rem 6rem;
+      padding: 8rem 4rem;
       text-align: center;
+      background: var(--bg-secondary);
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
     
     .contact h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 400;
-      margin-bottom: 1.5rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
     }
     
-    .contact h2 span {
-      color: var(--gold);
+    .contact h2 .highlight {
+      color: var(--primary);
+      text-shadow: 0 0 30px var(--primary);
     }
     
     .contact p {
-      color: var(--text-muted);
-      margin-bottom: 2.5rem;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
+      color: var(--text-dim);
+      margin-bottom: 2rem;
     }
     
     .contact-email {
-      display: inline-flex;
-      align-items: center;
-      gap: 1rem;
-      font-size: 1.3rem;
-      color: var(--gold);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      color: var(--secondary);
       text-decoration: none;
-      padding: 1rem 2rem;
-      border: 1px solid var(--gold-dark);
-      transition: all 0.3s;
     }
     
     .contact-email:hover {
-      background: rgba(201, 169, 98, 0.1);
-      border-color: var(--gold);
+      text-shadow: 0 0 20px var(--secondary);
     }
     
     /* 底部 */
     footer {
-      padding: 2rem 6rem;
+      padding: 2rem 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top: 1px solid rgba(201, 169, 98, 0.1);
+      border-top: 1px solid #1a1a1f;
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
     
     footer p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+      font-size: 0.7rem;
+      color: var(--text-dim);
     }
     
     .socials {
@@ -586,14 +438,28 @@
     }
     
     .socials a {
-      color: var(--text-muted);
-      font-size: 1.2rem;
+      color: var(--text-dim);
       text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
       transition: color 0.3s;
     }
     
     .socials a:hover {
-      color: var(--gold);
+      color: var(--primary);
+    }
+    
+    /* 響應式 */
+    @media (max-width: 1024px) {
+      .expertise-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-decoration { display: none; }
+    }
+    
+    @media (max-width: 768px) {
+      nav, .hero, .expertise, .journey, .contact, footer { padding: 0 2rem; }
+      .nav-links { display: none; }
+      .expertise-grid { grid-template-columns: 1fr; }
+      .stats { flex-direction: column; gap: 1.5rem; }
     }
     
     /* 載入 */
@@ -601,7 +467,7 @@
       position: fixed;
       inset: 0;
       background: var(--bg);
-      z-index: 1000;
+      z-index: 2000;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -609,23 +475,20 @@
       gap: 1.5rem;
     }
     
-    .loader.hidden {
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.6s;
-    }
+    .loader.hidden { opacity: 0; visibility: hidden; transition: all 0.5s; }
     
-    .loader-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.3em;
-      color: var(--gold);
+    .loader-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--primary);
+      text-shadow: 0 0 30px var(--primary);
     }
     
     .loader-bar {
-      width: 150px;
-      height: 1px;
-      background: var(--gold-dark);
+      width: 200px;
+      height: 2px;
+      background: #1a1a1f;
       position: relative;
       overflow: hidden;
     }
@@ -636,258 +499,160 @@
       left: 0;
       top: 0;
       height: 100%;
-      width: 30%;
-      background: var(--gold);
-      animation: loadMove 1.5s ease-in-out infinite;
+      width: 50%;
+      background: var(--primary);
+      animation: load 1.5s ease-in-out infinite;
     }
     
-    @keyframes loadMove {
-      0% { left: -30%; }
+    @keyframes load {
+      0% { left: -50%; }
       100% { left: 100%; }
-    }
-    
-    /* 響應式 */
-    @media (max-width: 1200px) {
-      .hero-visual {
-        display: none;
-      }
-      
-      .hero-content {
-        max-width: 100%;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      nav {
-        padding: 1.5rem 2rem;
-      }
-      
-      .nav-links {
-        display: none;
-      }
-      
-      .hero, .honors, .expertise, .journey, .contact, footer {
-        padding: 0 2rem;
-      }
-      
-      .honors-grid, .expertise-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .journey-timeline {
-        margin-left: 1.5rem;
-        padding-left: 1.5rem;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="bg"></div>
-  <div class="grain"></div>
+  <div class="bg-grid"></div>
+  <div class="scanlines"></div>
   
-  <!-- 載入 -->
   <div class="loader">
-    <div class="loader-text">林祐凡</div>
+    <div class="loader-logo">LIN YU-FAN</div>
     <div class="loader-bar"></div>
   </div>
   
-  <!-- 導航 -->
   <nav>
-    <div class="logo">LIN YU-FAN</div>
+    <div class="logo">林祐凡<span>.VNU</span></div>
     <ul class="nav-links">
-      <li><a href="#honors">榮譽</a></li>
       <li><a href="#expertise">專長</a></li>
       <li><a href="#journey">經歷</a></li>
       <li><a href="#contact">聯繫</a></li>
     </ul>
   </nav>
   
-  <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <span class="hero-label">萬能科技大學 時尚造型設計暨表演藝術系</span>
-      <h1>林<span>祐凡</span></h1>
-      <p class="hero-subtitle">專任教師</p>
-      <p class="hero-description">
-        用舞蹈編排訴說故事，用影音設計創造感動。
-        帶領學生走向國際舞台，探索藝術的無限可能。
-      </p>
+      <span class="hero-tag">◈ 萬能科大 時尚造型設計暨表演藝術系</span>
+      <h1>
+        <span class="line"><span class="text">用舞蹈</span></span>
+        <span class="line"><span class="text highlight">創造</span></span>
+        <span class="line"><span class="text">無限可能</span></span>
+      </h1>
+      <p>影音設計 · 行銷專業 · 舞蹈編排。帶領學生走向國際舞台，探索藝術的無限可能。</p>
       
-      <div class="hero-credentials">
-        <div class="credential">
-          <div class="credential-num">50+</div>
-          <div class="credential-label">指導學生</div>
-        </div>
-        <div class="credential">
-          <div class="credential-num">8+</div>
-          <div class="credential-label">年經驗</div>
-        </div>
-        <div class="credential">
-          <div class="credential-num">3</div>
-          <div class="credential-label">國際交流</div>
-        </div>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-primary">聯繫我</a>
+        <a href="#expertise" class="btn btn-outline">專長領域</a>
       </div>
       
-      <div class="hero-buttons">
-        <a href="#contact" class="btn btn-primary">
-          聯繫資訊
-          <i class="ph ph-arrow-right"></i>
-        </a>
-        <a href="#expertise" class="btn btn-outline">
-          專長領域
-        </a>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">50+</div>
+          <div class="stat-label">指導學生</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">8</div>
+          <div class="stat-label">年經驗</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">國際交流</div>
+        </div>
       </div>
     </div>
     
-    <div class="hero-visual">
-      <div class="photo-frame">
-        <div class="photo-accent"></div>
-        <div class="photo-accent"></div>
-        <div class="photo-inner">
-          <span class="photo-emoji">👨‍🏫</span>
-        </div>
-      </div>
+    <div class="hero-decoration">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
     </div>
   </section>
   
-  <!-- 榮譽 -->
-  <section class="honors" id="honors">
-    <div class="section-header">
-      <div>
-        <div class="section-label">Achievements</div>
-        <h2 class="section-title">重要榮譽</h2>
-      </div>
-    </div>
-    
-    <div class="honors-grid">
-      <div class="honor-card">
-        <div class="honor-icon">🏆</div>
-        <h3 class="honor-title">萬能科大校歌比賽冠軍</h3>
-        <p class="honor-desc">2025 · 指導老師</p>
-      </div>
-      <div class="honor-card">
-        <div class="honor-icon">🥈</div>
-        <h3 class="honor-title">College High 街舞大賽</h3>
-        <p class="honor-desc">全國亞軍 · 指導老師</p>
-      </div>
-      <div class="honor-card">
-        <div class="honor-icon">🌏</div>
-        <h3 class="honor-title">韓國國際研習</h3>
-        <p class="honor-desc">帶領 30 名學生跨文化交流</p>
-      </div>
-    </div>
-  </section>
-  
-  <!-- 專長 -->
   <section class="expertise" id="expertise">
     <div class="section-header">
-      <div>
-        <div class="section-label">Expertise</div>
-        <h2 class="section-title">專業領域</h2>
-      </div>
+      <h2 class="section-title">
+        <span>01</span>
+        專業領域
+      </h2>
     </div>
     
     <div class="expertise-grid">
-      <div class="expertise-card">
+      <div class="expertise-item">
         <div class="expertise-icon">🎬</div>
-        <h3 class="expertise-title">影音設計</h3>
-        <p class="expertise-desc">從前期拍攝到後期剪輯，創造視覺與聽覺的完美結合</p>
+        <div class="expertise-name">影音設計</div>
+        <div class="expertise-desc">從前期拍攝到後期剪輯，創造視覺與聽覺的完美結合</div>
       </div>
-      <div class="expertise-card">
+      <div class="expertise-item">
         <div class="expertise-icon">📢</div>
-        <h3 class="expertise-title">行銷專業</h3>
-        <p class="expertise-desc">品牌策略與推廣，讓藝術作品被更多人看見</p>
+        <div class="expertise-name">行銷專業</div>
+        <div class="expertise-desc">品牌策略與推廣，讓藝術被看見</div>
       </div>
-      <div class="expertise-card">
+      <div class="expertise-item">
         <div class="expertise-icon">💃</div>
-        <h3 class="expertise-title">舞蹈編排</h3>
-        <p class="expertise-desc">融合創意與技術，打造震撼人心的舞台演出</p>
+        <div class="expertise-name">舞蹈編排</div>
+        <div class="expertise-desc">融合創意與技術，打造震撼人心的演出</div>
       </div>
     </div>
   </section>
   
-  <!-- 經歷 -->
   <section class="journey" id="journey">
     <div class="section-header">
-      <div>
-        <div class="section-label">Journey</div>
-        <h2 class="section-title">經歷軌跡</h2>
-      </div>
+      <h2 class="section-title">
+        <span>02</span>
+        經歷軌跡
+      </h2>
     </div>
     
-    <div class="journey-timeline">
+    <div class="journey-list">
       <div class="journey-item">
         <div class="journey-year">現在</div>
-        <h3 class="journey-title">萬能科技大學 時尚造型設計暨表演藝術系</h3>
-        <p class="journey-desc">專任教師 · 傳授影音設計與舞蹈編排</p>
+        <div class="journey-title">萬能科技大學 時尚造型設計暨表演藝術系</div>
+        <div class="journey-desc">專任教師 · 影音設計與舞蹈編排</div>
       </div>
       <div class="journey-item">
         <div class="journey-year">2024-2025</div>
-        <h3 class="journey-title">韓國國際研習</h3>
-        <p class="journey-desc">帶領 30 名學生赴韓國進行 8 天跨文化交流</p>
+        <div class="journey-title">韓國國際研習</div>
+        <div class="journey-desc">帶領 30 名學生赴韓國 8 天跨文化交流</div>
       </div>
       <div class="journey-item">
-        <div class="journey-year">競賽指導</div>
-        <h3 class="journey-title">多次帶領學生參賽獲獎</h3>
-        <p class="journey-desc">街舞比賽、舞蹈發表、期末製作等</p>
+        <div class="journey-year">2025</div>
+        <div class="journey-title">萬能科大校歌比賽冠軍</div>
+        <div class="journey-desc">指導老師</div>
+      </div>
+      <div class="journey-item">
+        <div class="journey-year">2024</div>
+        <div class="journey-title">College High 街舞大賽全國亞軍</div>
+        <div class="journey-desc">指導老師</div>
       </div>
     </div>
   </section>
   
-  <!-- 聯繫 -->
   <section class="contact" id="contact">
-    <h2>與我<span>聯繫</span></h2>
+    <h2>開始<span class="highlight">專案</span></h2>
     <p>歡迎洽談合作、演講或藝術相關事務</p>
-    <a href="mailto:rinolin1133@gmail.com" class="contact-email">
-      <i class="ph ph-envelope"></i>
-      rinolin1133@gmail.com
-    </a>
+    <a href="mailto:rinolin1133@gmail.com" class="contact-email">rinolin1133@gmail.com</a>
   </section>
   
-  <!-- 底部 -->
   <footer>
     <p>© 2026 林祐凡 · 萬能科技大學 時尚造型設計暨表演藝術系</p>
     <div class="socials">
-      <a href="#"><i class="ph ph-instagram-logo"></i></a>
-      <a href="#"><i class="ph ph-youtube-logo"></i></a>
-      <a href="#"><i class="ph ph-facebook-logo"></i></a>
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+      <a href="#">Facebook</a>
     </div>
   </footer>
   
   <script>
-    // 載入完成
     window.addEventListener('load', () => {
       setTimeout(() => {
         document.querySelector('.loader').classList.add('hidden');
       }, 1200);
     });
     
-    // 平滑滾動
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
-    });
-    
-    // 滾動動畫
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    document.querySelectorAll('.honor-card, .expertise-card, .journey-item').forEach((el, i) => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = `all 0.6s ease ${i * 0.1}s`;
-      observer.observe(el);
     });
   </script>
 </body>
